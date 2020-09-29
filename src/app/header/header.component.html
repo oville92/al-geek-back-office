@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="#">ALGEEK administrator</a>
         </div>
         <ul class="nav navbar-nav">
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a *ngIf="_auth.isLoggedIn()" href="javascript:void(0)" routerLink="/">HOME</a></li>
+            <li routerLinkActive="active"  [routerLinkActiveOptions]="{exact:true}"><a *ngIf="_auth.isLoggedIn()" href="javascript:void(0)" routerLink="/dashboard">TABLEAU DE BORD</a></li>
             <li routerLinkActive="active"><a *ngIf="! _auth.isLoggedIn()" routerLink="/login">LOGIN</a></li>
             <li routerLinkActive="active"><a *ngIf="_auth.isLoggedIn()" href="javascript:void(0)" routerLink="/product-list">PRODUITS</a></li>
             <li routerLinkActive="active"><a *ngIf="_auth.isLoggedIn()" href="javascript:void(0)" routerLink="/customer-list">CLIENTS</a></li>

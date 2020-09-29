@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductApiService } from '../../api/product-api.service';
-import { StockApiService } from '../../api/stock-api.service';
+import { ConverterApiService } from '../../api/converter-api.service';
 import { Product } from './../../models/product.model';
 import { Stock } from './../../models/stock.model';
 
@@ -29,9 +29,13 @@ export class ProductListComponent implements OnInit {
   imageWidth: number = 50;
   imageMargin: number = 50;
 
+  dollarValue: number;
+  poundValue: number;
+  yenValue: number;
+
   // CONSTRUCTEUR :
   constructor(private productApi: ProductApiService,
-    private stockApi: StockApiService,
+    private converterService: ConverterApiService,
     private router : Router) { }
 
   // GESTION DES FILTRES :
@@ -75,7 +79,20 @@ export class ProductListComponent implements OnInit {
       error: err => this.errorMessage = err
     });
 
+    this.converterService.convertFromEuro("USD",1).subscribe({
+      next:(data) => {this.dollarValue = data,
+                      console.log("dollar value : " + data)}
+    });
+    this.converterService.convertFromEuro("GBP",1).subscribe({
+      next: (data) => this.poundValue = data
+    });
+    this.converterService.convertFromEuro("JPY",1).subscribe({
+      next: (data) => this.yenValue = data
+    })
     this.devise = "€";
+    // this.poundValue = 1.5;
+    // this.dollarValue = 0.91;
+    // this.yenValue = 123;
   }
 
   // REDIRECTION VERS PRODUCT-DETAIL
@@ -94,15 +111,15 @@ export class ProductListComponent implements OnInit {
     var displayedPrice : number;
     switch(this.devise) {
       case "$": {
-        displayedPrice = price*1.1;
+        displayedPrice = price*this.dollarValue;
         break;
       }
       case "£": {
-        displayedPrice = price*1.5;
+        displayedPrice = price*this.poundValue;
         break;
       }
       case "Y": {
-        displayedPrice = price*123;
+        displayedPrice = price*this.yenValue;
         break;
       }
       default: {

@@ -21,6 +21,7 @@ import { CustomerDetailComponent } from './customers/customer-detail/customer-de
 import { RegisterComponent } from './register/register.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { CommonModule } from '@angular/common';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CommonModule } from '@angular/common';
     ProductListComponent,
     CustomerDetailComponent,
     RegisterComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

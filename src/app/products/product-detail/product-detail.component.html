@@ -4,33 +4,34 @@
          <div class='col-md-8' style="margin-left: 20px; width: 50vw; margin-top: 20px; font-weight: bolder; font-size: larger;">
             <div class='row'>
                <div class='col-md-3'>Article :</div>
-               <div class='col-md-5' style="text-align: right;">{{product.nom}}</div>
+               <div class='col-md-4' style="text-align: right;">{{product.nom}}</div>
                <input type="text" *ngIf="isFormVisible" [(ngModel)]="modifiedProduct.nom">
             </div>
             <div class='row'>
                <div class='col-md-3'>Prix :</div>
-               <div class='col-md-5' style="text-align: right;">{{convertCurrency(product.prix) | number : '1.2-2'}}</div>
-               <div>{{this.devise}}</div>
+               <div class='col-md-4' style="text-align: right;">
+                  <div>{{convertCurrency(product.prix) | number : '1.2-2'}}{{this.devise}}</div>
+               </div>
                <input type="number" *ngIf="isFormVisible" [(ngModel)]="modifiedProduct.prix" style="text-align: right;">
             </div>
             <div class='row'>
                <div class='col-md-3'>
                   <div *ngIf="isDataAvailable" [class.lowStock]="stock.quantityInStock<stock.minimumQuantity" >Quantité disponible :</div>
                </div>
-               <div class='col-md-5' *ngIf="isDataAvailable" style="text-align: right;">
+               <div class='col-md-4' *ngIf="isDataAvailable" style="text-align: right;">
                   <div [class.lowStock]="stock.quantityInStock<stock.minimumQuantity" >{{ stock.quantityInStock }}</div>
                </div>
             </div>
             <div class='row'>
                <div class='col-md-3'>Niveau d'alerte :</div>
-               <div class='col-md-5' *ngIf="isDataAvailable" style="text-align: right;">
+               <div class='col-md-4' *ngIf="isDataAvailable" style="text-align: right;">
                   {{ stock.minimumQuantity }}
                </div>
                <input type="number" *ngIf="isFormVisible" [(ngModel)]="modifiedStock.minimumQuantity" style="text-align: right;">
                
             </div>
          </div>
-         <div class='col-md-4'>
+         <div class='col-md-3'>
             <img class='center-block img-responsive'
             [style.width.px]='200'
             [style.margin.px]='2'

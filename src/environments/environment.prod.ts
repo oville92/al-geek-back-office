@@ -9,5 +9,7 @@ export const environment = {
 
   productApiUrl: 'https://h1y8l5co8c.execute-api.eu-west-3.amazonaws.com/portal/gateway/product',
 
-  stockApiUrl: 'https://h1y8l5co8c.execute-api.eu-west-3.amazonaws.com/portal/gateway/stock'
+  stockApiUrl: 'https://h1y8l5co8c.execute-api.eu-west-3.amazonaws.com/portal/gateway/stock',
+  
+  converterApiUrl: 'https://h1y8l5co8c.execute-api.eu-west-3.amazonaws.com/portal/gateway/currency-converter'
 };

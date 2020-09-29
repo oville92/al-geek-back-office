@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
     this.auth.signIn(email,password).subscribe(
       (data) => {
-        this._router.navigateByUrl('/');
+        this._router.navigateByUrl('/dashboard');
       },
       (err) => {
         this.emailVerificationMessage = true;

@@ -1,0 +1,22 @@
+.product-recap {
+    margin-top: 10px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    border: solid;
+    border-radius:5px;
+    border-color: darkblue;
+}
+
+.product-form {
+    min-height: 20vh;
+    margin-top: 20px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    border: solid;
+    border-color: darkblue;
+    border-radius: 5px;
+}
+
+.lowStock {
+    color: red;
+}

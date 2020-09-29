@@ -1,0 +1,56 @@
+<div class="card" *ngIf="order">
+    <div class="card-body">
+
+        <div class='row'>
+
+
+            <br />
+
+            <div class="col-md-8" style="margin-left: 20px; width: 50vw;">
+                <div class="titre"> Date de la commande : {{ order.dateDeLaCommande | date : 'EEEE d MMMM y' }}
+                </div>
+                <div class="titre"> Montant total de la commande : {{ order.prix | currency:'EUR':'symbol' }} </div>
+                
+                <div class="titre"> Id de la commande : {{ order.id }} </div>
+                <br />
+                <div>
+                    <table class="table">
+                        <tr>
+                            <th> Id du produit commandé : </th>
+                            <th> Quantité achetée : </th>
+                        </tr>
+
+                        <tr *ngFor='let ligneC of order.listLigneCommande'>
+                            <td>{{ ligneC.produitId }}</td>
+                            <td>{{ ligneC.quantite }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-8" style="margin-left: 20px; width: 50vw;">
+                    <div class='row'>
+                        <div class='col-md-4'>Id client :</div>
+                        <div class='col-md-8'>{{customer.id}}</div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-4'>Nom :</div>
+                        <div class='col-md-8'>{{customer.nom}}</div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-4'>Prénom :</div>
+                        <div class='col-md-8'>{{customer.prenom}}</div>
+                    </div>
+
+                    <tr>
+                        <button class="btn btn-primary" (click)='onBack()' style="margin-left: 400px;">RETOUR</button>
+                    </tr>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

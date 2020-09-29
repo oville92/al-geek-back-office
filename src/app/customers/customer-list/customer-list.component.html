@@ -1,0 +1,55 @@
+<div class="card">
+
+    <div class="card-header">
+    </div>
+
+    <div class="card-body">
+
+        <!-- barre de recherche dynamique -->
+        <div class="row">
+            <div class="col-md-2"> Filtered by:</div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)]='listFilter' >
+            </div>
+        </div>
+
+        <!--Affichage des customers tableau-->
+        <div class="table-responsive">
+            <table class="table" *ngIf='customers && customers.length'>
+               
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Code Postal</th>
+                    <th>Ville</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                    <!-- Structural directive -->
+                    <!-- <tr *ngFor='let customer of customers'> -->
+                    <tr *ngFor='let customer of filteredCustomers'>
+                        <!-- Interpolation -->
+                        <td> <a [routerLink]="['/customer-list', customer.id]"> {{ customer.nom }}</a></td>
+                        <td>{{ customer.prenom | lowercase }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.codePostal }}</td>
+                        <td>{{ customer.ville }}</td>
+                        <td>
+                            <button class="btn btn-primary" 
+                            (click)='goToDetails(customer.id)'>
+                            Détails</button></td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

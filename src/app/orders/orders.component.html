@@ -1,0 +1,38 @@
+<div class="card">
+
+    <div class="card-header"></div>
+     <p class="p1">Voici les commandes du mois :</p>
+
+    <div class="card-body">
+
+        <!--Affichage des customers tableau-->
+        <div class="table-responsive">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Date de commande</th>
+                        <th>Id client</th>
+                        <th>Prix</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor='let order of orders'>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.dateDeLaCommande | date : "EEEE d MMMM y" }}</td>
+                        <td>{{ order.clientId }}</td>
+                        <td>{{ order.prix |currency:'EUR':'symbol'}}</td>
+                        <td>
+                            <button class="btn btn-primary" 
+                            (click)='goToDetails(order.id)'>
+                            Détails</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

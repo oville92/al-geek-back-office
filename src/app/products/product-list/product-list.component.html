@@ -1,0 +1,79 @@
+<div class="card">
+
+    <div class="card-header" style="margin-top: 20px; margin-bottom:20px; margin-left:700px; font-size: large; font-weight: bold;">
+        CATALOGUE
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2"> Filtrer par</div>
+            <div class="col-md-2">Produit :
+                <input type="text" [(ngModel)]='listFilterByName' >
+            </div>
+            <div class="col-md-2">Catégorie :
+                <input type="text" [(ngModel)]='listFilterByCategory' >
+            </div>
+            <div class="col-md-2">Marque :
+                <input type="text" [(ngModel)]='listFilterByBrand' >
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-1">
+                <div class="column">
+                    <div><img src="assets/images/EUR.png" (click)="onEUR()" class="imgD"></div>
+                    <div><img src="assets/images/GBP.png" (click)="onGBP()" class="imgD"></div>
+                </div>
+                <div class="">
+                    <div><img src="assets/images/USD.png" (click)="onUSD()" class="imgD"></div>
+                    <div><img src="assets/images/JPY.png" (click)="onJPY()" class="imgD"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table" *ngIf='products && products.length && !isSelected'>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Produit</th>
+                        <th>Catégorie</th>
+                        <th>Marque</th>
+                        <th>Date d'ajout</th>
+                        <th>Prix</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor='let product of filteredProducts'>
+                        <td> <img src='assets/images/{{product.photo}}'
+                            [style.width.px]='imageWidth'
+                            [style.margin-left.px]='imageMargin'> </td>
+                        <td>{{ product.nom }}</td>
+                        <td>{{ product.type.nom }}</td>
+                        <td>{{ product.marque.nom }}</td>
+                        <td>{{ product.dateAjout | date : 'EEEE d MMMM y'}}</td>
+                        <td>{{ convertCurrency(product.prix) | number : '1.2-2' }}</td>
+                        <td>{{ devise }} </td>
+                        <td><button class="btn btn-primary" (click)='goToDetails(product.id, product)'>
+                            Editer
+                        </button></td>
+                    </tr>
+                    
+                </tbody>
+
+            </table>
+
+        </div>
+        <div>
+            <button class='btn btn-outline-secondary' (click)='onBack()'style="margin-left: 80vw; margin-top:15px;">
+                <i class='fa fa-chevron-left'></i> RETOUR A LA LISTE
+            </button>
+        </div>
+        <app-product-detail [product]="selectedProduct" [devise]="devise" *ngIf="isSelected"></app-product-detail>
+
+    </div>
+
+</div>
+
+

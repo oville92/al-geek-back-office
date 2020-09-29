@@ -1,0 +1,23 @@
+.p1{
+    font-weight: bold;
+    font-style: italic;
+    margin: 30px;
+    padding: 10px;
+}
+.table {
+    border-collapse: separate;
+    border-spacing: 40px 0;
+    margin: 0 auto;
+}
+
+.td {
+    padding: 10px 0;
+    margin: 10px 0;
+}
+
+.th {
+    padding: 10px 0;
+    margin: 10px 0;
+}
+
+

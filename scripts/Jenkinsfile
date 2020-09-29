@@ -1,0 +1,35 @@
+pipeline {
+    agent any 
+    tools {
+        maven 'M3'
+    }
+    stages {
+        stage ('Publish package through SSH') {
+            steps{
+                script {
+    				sshPublisher(publishers: [
+    					sshPublisherDesc(configName: 'aws-back-office-host', transfers: [
+    						sshTransfer(
+    							execCommand: '''
+    								echo "Docker Clean Up";
+                                    sudo docker stop al-geek-back-office-cont || true;
+                                    sudo docker rm al-geek-back-office-cont || true;
+                                    sudo docker rmi oville/al-geek-back-office:1.0 || true;
+    								sudo docker rmi oville/al-geek-back-office:1.1 || true;
+    								sudo docker rmi oville/al-geek-back-office:1.2 || true;
+    								sudo rm -rf *;
+                               '''
+                            ),
+    						sshTransfer(
+								execCommand: '''
+    								sudo docker run -d --name al-geek-back-office-cont -p 4200:4200 oville/al-geek-back-office:1.2;
+                                '''
+                            )
+                        ])
+                    ])
+                }
+            }
+        }
+    }
+    
+}
